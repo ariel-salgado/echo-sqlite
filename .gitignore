@@ -1,0 +1,18 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+
+# Go workspace file
+tmp/
+
+# IDE specific files
+.vscode
+
+# .env file
+.env
+
+# Project build
+main
+
+# OS X generated file
+.DS_Store
