@@ -2,32 +2,19 @@ package main
 
 import (
 	"log"
-	"net/http"
 	"os"
 
-	"github.com/joho/godotenv"
-	"github.com/labstack/echo/v4"
+	_ "github.com/joho/godotenv/autoload"
+
+	"github.com/ariel-salgado/echo-sqlite-api/internal/server"
 )
 
 func main() {
-	err := godotenv.Load()
+	addr := os.Getenv("ADDR")
 
-  	if err != nil {
-		log.Fatal("Error loading .env file")
+	s := server.NewServer(addr)
+
+	if err := s.Start(); err != nil {
+		log.Fatalf("Server could not be ran: %v", err)
 	}
-
-	port := os.Getenv("PORT")
-	if port == "" {
-		log.Fatal("PORT environment variable is not set")
-	}
-  
-	e := echo.New()
-	e.HideBanner = true
-
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
-
-	
-	e.Logger.Fatal(e.Start(":" + port))
 }
