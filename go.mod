@@ -1,4 +1,4 @@
-module echo-sqlite-api
+module github.com/ariel-salgado/echo-sqlite-api
 
 go 1.23.5
 
